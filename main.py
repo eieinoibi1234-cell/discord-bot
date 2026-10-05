@@ -10,7 +10,7 @@ import threading
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
 CLIENT_ID = "1555799725083590676"
 CLIENT_SECRET = os.environ.get("DISCORD_CLIENT_SECRET")
-REDIRECT_URI = os.environ.get("REDIRECT_URI", "https://discord-bot-ovr7.onrender.com/callback")
+REDIRECT_URI = "https://discord-bot-ovr7.onrender.com/callback"
 GUILD_ID = 1552247740585476188
 ROLE_ID = 1556306587893633065
 
@@ -31,7 +31,7 @@ async def on_ready():
 
 @bot.tree.command(name="인증", description="인증 버튼을 생성합니다.")
 async def verify_command(interaction: discord.Interaction):
-    auth_url = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&response_type=code&scope=identify%20guilds.join"
+    auth_url = f"https://discord.com/api/oauth2/authorize?client_id={CLIENT_ID}&redirect_uri=https://discord-bot-ovr7.onrender.com/callback&response_type=code&scope=identify%20guilds.join"
     
     view = discord.ui.View()
     button = discord.ui.Button(label="인증하기", url=auth_url, style=discord.ButtonStyle.link)
@@ -92,3 +92,4 @@ if __name__ == "__main__":
     t = threading.Thread(target=run_flask)
     t.start()
     bot.run(TOKEN)
+
